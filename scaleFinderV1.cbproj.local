@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BorlandProject>
+	<Transactions>
+    <Transaction>2023/12/29 00:35:53.000.822,=C:\Users\coles\Documents\Embarcadero\Studio\Projects\Project1PCH1.h</Transaction>
+    <Transaction>2023/12/29 00:35:54.000.007,=C:\Users\coles\Documents\Embarcadero\Studio\Projects\Unit1.cpp</Transaction>
+    <Transaction>2023/12/29 01:44:16.000.024,=C:\Users\coles\Documents\Embarcadero\Studio\Projects\Project1PCH1.h</Transaction>
+    <Transaction>2023/12/29 01:44:16.000.071,=C:\Users\coles\Documents\Embarcadero\Studio\Projects\Unit1.cpp</Transaction>
+    <Transaction>2024/01/16 16:30:53.000.952,=C:\Users\coles\Documents\Embarcadero\Studio\Projects\Unit1.cpp</Transaction>
+    <Transaction>2024/01/16 16:30:54.000.545,=C:\Users\coles\Documents\Embarcadero\Studio\Projects\Project1PCH1.h</Transaction>
+    <Transaction>2024/01/16 16:34:29.000.247,=C:\Users\coles\Documents\Embarcadero\Studio\Projects\Project1PCH1.h</Transaction>
+    <Transaction>2024/01/16 16:34:29.000.134,=C:\Users\coles\Documents\Embarcadero\Studio\Projects\Unit1.cpp</Transaction>
+    <Transaction>2024/01/16 16:36:19.000.714,=C:\Users\coles\Documents\Embarcadero\Studio\Projects\Unit1.cpp</Transaction>
+    <Transaction>2024/01/16 16:36:20.000.354,=C:\Users\coles\Documents\Embarcadero\Studio\Projects\Project1PCH1.h</Transaction>
+    <Transaction>2024/01/16 16:42:48.000.390,=C:\Users\coles\Documents\Embarcadero\Studio\Projects\Unit1.cpp</Transaction>
+    <Transaction>2024/01/16 16:42:49.000.476,=C:\Users\coles\Documents\Embarcadero\Studio\Projects\Project1PCH1.h</Transaction>
+    <Transaction>2024/01/16 16:54:50.000.303,=C:\Users\coles\Documents\Embarcadero\Studio\Projects\Unit1.cpp</Transaction>
+    <Transaction>2024/01/16 16:54:50.000.636,=C:\Users\coles\Documents\Embarcadero\Studio\Projects\Project1PCH1.h</Transaction>
+    <Transaction>2024/01/16 17:04:38.000.431,=C:\Users\coles\Documents\Embarcadero\Studio\Projects\Unit1.cpp</Transaction>
+    <Transaction>2024/01/16 17:04:38.000.881,=C:\Users\coles\Documents\Embarcadero\Studio\Projects\Project1PCH1.h</Transaction>
+    <Transaction>2024/01/16 17:06:59.000.999,=C:\Users\coles\Documents\Embarcadero\Studio\Projects\Unit1.cpp</Transaction>
+    <Transaction>2024/01/16 17:07:00.000.334,=C:\Users\coles\Documents\Embarcadero\Studio\Projects\Project1PCH1.h</Transaction>
+    <Transaction>2024/01/16 17:49:40.000.904,=C:\Users\coles\Documents\Embarcadero\Studio\Projects\Unit1.cpp</Transaction>
+    <Transaction>2024/01/16 17:49:41.000.224,=C:\Users\coles\Documents\Embarcadero\Studio\Projects\Project1PCH1.h</Transaction>
+    <Transaction>2024/01/17 15:47:17.000.271,=C:\Users\coles\Documents\Embarcadero\Studio\Projects\Unit1.cpp</Transaction>
+    <Transaction>2024/01/17 15:47:17.000.751,=C:\Users\coles\Documents\Embarcadero\Studio\Projects\Project1PCH1.h</Transaction>
+    <Transaction>2024/01/17 23:53:19.000.606,=C:\Users\coles\Documents\Embarcadero\Studio\Projects\Project1PCH1.h</Transaction>
+    <Transaction>2024/01/17 23:53:19.000.059,=C:\Users\coles\Documents\Embarcadero\Studio\Projects\Unit1.cpp</Transaction>
+    <Transaction>2024/08/18 21:36:49.000.878,=C:\Users\coles\Documents\Embarcadero\Studio\Projects\Unit1.cpp</Transaction>
+    <Transaction>2024/08/18 21:36:50.000.309,=C:\Users\coles\Documents\Embarcadero\Studio\Projects\Project1PCH1.h</Transaction>
+    <Transaction>2024/08/18 21:37:22.000.432,C:\Users\coles\Documents\Embarcadero\Studio\Projects\Unit1.fmx=C:\Users\coles\Documents\Embarcadero\Studio\Projects\chordApp\scaleFinder5\Unit1.fmx</Transaction>
+    <Transaction>2024/08/18 21:37:22.000.526,C:\Users\coles\Documents\Embarcadero\Studio\Projects\Project1.cbproj=C:\Users\coles\Documents\Embarcadero\Studio\Projects\chordApp\scaleFinder5\scaleFinderV1.cbproj</Transaction>
+    <Transaction>2024/08/18 21:37:22.000.460,C:\Users\coles\Documents\Embarcadero\Studio\Projects\Project1PCH1.h=C:\Users\coles\Documents\Embarcadero\Studio\Projects\chordApp\scaleFinder5\scaleFinderV1PCH1.h</Transaction>
+    <Transaction>2024/08/18 21:37:22.000.432,C:\Users\coles\Documents\Embarcadero\Studio\Projects\Unit1.cpp=C:\Users\coles\Documents\Embarcadero\Studio\Projects\chordApp\scaleFinder5\Unit1.cpp</Transaction>
+    <Transaction>2024/08/18 21:37:22.000.432,C:\Users\coles\Documents\Embarcadero\Studio\Projects\Unit1.h=C:\Users\coles\Documents\Embarcadero\Studio\Projects\chordApp\scaleFinder5\Unit1.h</Transaction>
+    <Transaction>2024/08/18 21:37:36.000.702,C:\Users\coles\Documents\Embarcadero\Studio\Projects\chordApp\scaleFinder5\scaleFinderV1.cbproj=C:\Users\coles\Documents\Embarcadero\Studio\Projects\chordApp\scaleFinder5\scaleFinderV1.cbproj</Transaction>
+    <Transaction>2024/08/18 21:45:12.000.053,=C:\Users\coles\Documents\Embarcadero\Studio\Projects\chordApp\scaleFinder5\CustomDialPies.cpp</Transaction>
+    <Transaction>2024/08/18 21:47:55.000.914,=C:\Users\coles\Documents\Embarcadero\Studio\Projects\chordApp\scaleFinder5\note.cpp</Transaction>
+    <Transaction>2024/08/18 21:47:56.000.024,=C:\Users\coles\Documents\Embarcadero\Studio\Projects\chordApp\scaleFinder5\scale.cpp</Transaction>
+    <Transaction>2024/08/19 20:30:04.000.423,=C:\Users\coles\Documents\Embarcadero\Studio\Projects\chordApp\scaleFinder5\Unit2.cpp</Transaction>
+    <Transaction>2024/08/19 20:30:32.000.512,C:\Users\coles\Documents\Embarcadero\Studio\Projects\chordApp\scaleFinder5\Unit2.h=C:\Users\coles\Documents\Embarcadero\Studio\Projects\chordApp\scaleFinder5\ChordManager.h</Transaction>
+    <Transaction>2024/08/19 20:30:32.000.512,C:\Users\coles\Documents\Embarcadero\Studio\Projects\chordApp\scaleFinder5\Unit2.cpp=C:\Users\coles\Documents\Embarcadero\Studio\Projects\chordApp\scaleFinder5\ChordManager.cpp</Transaction>
+    <Transaction>2024/08/20 13:53:05.000.802,=C:\Users\coles\Documents\Embarcadero\Studio\Projects\chordApp\scaleFinder5\Unit2.cpp</Transaction>
+    <Transaction>2024/08/20 13:54:19.000.878,C:\Users\coles\Documents\Embarcadero\Studio\Projects\chordApp\scaleFinder5\Unit2.h=C:\Users\coles\Documents\Embarcadero\Studio\Projects\chordApp\scaleFinder5\SFDial.h</Transaction>
+    <Transaction>2024/08/20 13:54:19.000.878,C:\Users\coles\Documents\Embarcadero\Studio\Projects\chordApp\scaleFinder5\Unit2.cpp=C:\Users\coles\Documents\Embarcadero\Studio\Projects\chordApp\scaleFinder5\SFDial.cpp</Transaction>
+  </Transactions>
+</BorlandProject>

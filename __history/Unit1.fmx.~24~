@@ -1,0 +1,86 @@
+object Form1: TForm1
+  Left = 0
+  Top = 0
+  Caption = 'Form1'
+  ClientHeight = 440
+  ClientWidth = 680
+  Fill.Kind = Gradient
+  Fill.Gradient.Points = <
+    item
+      Color = xFF9B04D5
+      Offset = 0.180124223232269300
+    end
+    item
+      Color = xFF1B85F6
+      Offset = 0.686335384845733600
+    end>
+  Fill.Gradient.StartPosition.X = 0.500000000000000000
+  Fill.Gradient.StartPosition.Y = 1.000000000000000000
+  Fill.Gradient.StopPosition.X = 0.499999970197677600
+  Fill.Gradient.StopPosition.Y = 0.000000000000000000
+  Position = Designed
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  DesignerMasterStyle = 0
+  object gradBluePurple1: TBrushObject
+    StyleName = 'gradBluePurple1'
+    Brush.Kind = Gradient
+    Brush.Gradient.Points = <
+      item
+        Color = xFF1B85F6
+        Offset = 0.180124223232269300
+      end
+      item
+        Color = xFF9B04D5
+        Offset = 0.689440965652465800
+      end>
+    Brush.Gradient.StartPosition.X = 0.500000000000000000
+    Brush.Gradient.StartPosition.Y = 1.000000000000000000
+    Brush.Gradient.StopPosition.X = 0.499999970197677600
+    Brush.Gradient.StopPosition.Y = 0.000000000000000000
+  end
+  object Button1: TButton
+    Position.X = 272.000000000000000000
+    Position.Y = 450.000000000000000000
+    TabOrder = 1
+    Text = 'Button1'
+  end
+  object MainMenu1: TMainMenu
+    Left = 16
+    Top = 64
+    object MenuItem1: TMenuItem
+      Text = 'File'
+      object Exit: TMenuItem
+        Locked = True
+        ShortCut = 16472
+        Text = 'Exit'
+        OnClick = ExitClick
+      end
+    end
+  end
+  object gradBluePurple2: TBrushObject
+    StyleName = 'gradBluePurple2'
+    Brush.Kind = Gradient
+    Brush.Gradient.Points = <
+      item
+        Color = xFF9B04D5
+        Offset = 0.180124223232269300
+      end
+      item
+        Color = xFF1B85F6
+        Offset = 0.686335384845733600
+      end>
+    Brush.Gradient.StartPosition.X = 0.500000000000000000
+    Brush.Gradient.StartPosition.Y = 1.000000000000000000
+    Brush.Gradient.StopPosition.X = 0.499999970197677600
+    Brush.Gradient.StopPosition.Y = 0.000000000000000000
+  end
+  object Circle1: TCircle
+    Position.X = 56.000000000000000000
+    Position.Y = 384.000000000000000000
+    Size.Width = 50.000000000000000000
+    Size.Height = 50.000000000000000000
+    Size.PlatformDefault = False
+  end
+end

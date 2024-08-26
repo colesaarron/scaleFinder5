@@ -1,0 +1,61 @@
+//---------------------------------------------------------------------------
+
+#ifndef SFDialH
+#define SFDialH
+
+#include "CustomDialPies.h"
+#include "ChordManager.h"
+
+class NoteDial : public TCustomDialPies
+{
+public:
+	void __fastcall SelectPie(TObject* Sender) override;
+	//void __fastcall OnDialChange(TObject* Sender) override;
+	void __fastcall SetOnChange(TNotifyEvent event) override;
+	void setChordManager(ChordManager* cm);
+    void setIndexPtr(int* ptr);
+
+public:
+	__fastcall NoteDial(TComponent* Owner, int pieCount,
+		TAlphaColor pieColour, TAlphaColor selectedColour, TAlphaColor textColour);
+	__fastcall ~NoteDial() override;
+
+	ChordManager* chordManager; // Make sure ChordManager is accessible to dial
+
+	int* indexPtr;
+
+	TCustomDialPies* scaleDial;
+
+    void setDialPtr();
+
+	void collapseOtherDial(TCustomDialPies* dail);
+};
+
+class ScaleDial : public TCustomDialPies
+{
+public:
+    void __fastcall SelectPie(TObject* Sender) override;
+	//void __fastcall OnDialChange(TObject* Sender) override;
+	void __fastcall SetOnChange(TNotifyEvent event) override;
+	void setChordManager(ChordManager* cm);
+	void setIndexPtr(int* ptr);
+
+public:
+	__fastcall ScaleDial(TComponent* Owner, int pieCount,
+		TAlphaColor pieColour, TAlphaColor selectedColour, TAlphaColor textColour);
+	__fastcall ~ScaleDial() override;
+	void repaintDial() override;
+
+	ChordManager* chordManager;
+
+	int* indexPtr;
+
+	ScaleDial* scaleDial;
+
+	void setDialPtr();
+
+	// TEST for dial coordinates
+	//void __fastcall ShowDialPosition(TObject* Sender);
+};
+//---------------------------------------------------------------------------
+#endif
