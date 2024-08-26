@@ -30,3 +30,13 @@
 *.exe
 *.out
 *.app
+
+# Ignore C++ Builder astcache files
+__astcache/
+*.astcache/
+
+# Ignore other typical C++ build artifacts
+build/
+bin/
+debug/
+release/
