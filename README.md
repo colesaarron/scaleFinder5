@@ -15,4 +15,6 @@ All audio is produced using the system beep() function for simplicity.
 This app can help you to learn the individual notes that make up a given scale.
 
 Enjoy!
+
+*This application was created with Embarcadero C++ Builder. If you would like to try this app and are unable to compile it, please download the executable file from the Releases section by clicking on the tag.
  
