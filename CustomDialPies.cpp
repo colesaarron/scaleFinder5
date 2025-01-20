@@ -27,7 +27,7 @@ __fastcall TCustomDialPies::TCustomDialPies(TComponent* Owner, int pieCount,
 	m_textColour = textColour;
 
 	// Use this if not overriding the OnChange event
-//	this->OnChange = &SelectPie; // sets onChange event handler to custom handler
+	//this->OnChange = &SelectPie; // sets onChange event handler to custom handler
 
 }
 
@@ -75,28 +75,24 @@ void TCustomDialPies::createPolarPie(int scale, int angle = 0)
 	m_pies.push_back(pie); // push pie object to pie container
 
 	// Create label
-	// The labels positions can be determined using polar coordinates, where
-	// the angle theta is given by the angle of the associated pie. The angle
-	// is given in degrees so it must be converted to radians using
-    // radians = degrees * (PI/180)
+
 	TLabel* label = new TLabel(this);
 	label->Parent = this->Parent;
 	label->Position->X = (pie->Position->X + pie->Width / 2) +
-		(0.8 * this->Width) * std::cos(angle * (PI/180)) - m_offset;// - dialRadius - 10;
+		(0.8 * this->Width) * std::cos(angle * (PI/180)) - m_offset;
 	label->Position->Y = (pie->Position->Y + pie->Height / 2) +
-		(0.8 * this->Width) * std::sin(angle * (PI/180)) - m_offset; //- 10;
+		(0.8 * this->Width) * std::sin(angle * (PI/180)) - m_offset;
 	label->Width = m_pieAngle;
 	label->Height = m_pieAngle;
 	label->BringToFront();
 	label->TextSettings->VertAlign = TTextAlign::Center;
 	label->TextSettings->HorzAlign = TTextAlign::Center;
-	//label->StyledSettings = TStyledSettings(); // dissable all styled settings
 	label->StyledSettings = label->StyledSettings >> TStyledSetting::Family;
 	label->StyledSettings = label->StyledSettings >> TStyledSetting::Style;
 	label->StyledSettings = label->StyledSettings >> TStyledSetting::Size;
 	label->StyledSettings = label->StyledSettings >> TStyledSetting::FontColor;
 	label->TextSettings->Font->Family = "Source Code Pro";
-	label->TextSettings->Font->Size = 16; //m_pieAngle / 2;
+	label->TextSettings->Font->Size = 16;
 	label->Font->Style = TFontStyles() << TFontStyle::fsBold;
 	label->TextSettings->FontColor = m_textColour;
 	label->Text = "L";
@@ -168,17 +164,12 @@ void TCustomDialPies::createPolarPies()
 		pie->Fill->Color = m_pieColour; // claTurquoise
 		pie->Opacity = LOW_OPACITY;
 		pie->SendToBack();
-		//m_pies[i]->Repaint();
 	}
 
 	for (auto label : m_labels)
 	{
 		label->SendToBack();
 	}
-
-//    this->BringToFront();
-//    this->repaintDial();
-
 
 }
 
@@ -233,7 +224,7 @@ void TCustomDialPies::collapseElements()
 
 		pie->Width = pieRadius;
 		pie->Height = pieRadius;
-		pie->Fill->Color = m_pieColour; // claTurquoise
+		pie->Fill->Color = m_pieColour;
 		pie->Opacity = MID_OPACITY;
         pie->SendToBack();
 	}
@@ -241,7 +232,7 @@ void TCustomDialPies::collapseElements()
 	for (int i{0}; i < std::size(m_labels); i++)
 	{
 		double angle = m_pies[i]->StartAngle + m_offset;
-		double initFont = 16; //m_pieAngle / 1.875;
+		double initFont = 16;
 
 		m_labels[i]->Position->X = (m_pies[i]->Position->X + m_pies[i]->Width / 2) +
 			(0.8 * this->Width) * std::cos(angle * (PI/180)) - m_offset;
@@ -255,10 +246,6 @@ void TCustomDialPies::collapseElements()
 
 void TCustomDialPies::setLabels(int index, String text)
 {
-//	m_labels[index]->TextSettings->Font->Family = "Source Code Pro";
-//	m_labels[index]->TextSettings->Font->Size = 20;
-//	m_labels[index]->TextSettings->Font->Family = TFontStyle::fsBold;
-//	m_labels[index]->TextSettings->FontColor = claWhite;
 	m_labels[index]->Text = text;
 	m_labels[index]->Repaint();
     this->Repaint();
@@ -297,7 +284,6 @@ void __fastcall TCustomDialPies::SelectPie(TObject* sender)
 {
 	// Things to happen first each time dial is turned
 	collapseElements();
-	//m_selectedPieIndex = -1;
 
 	double angle = -(this->Value); // current angle of the dial
 
@@ -314,7 +300,7 @@ void __fastcall TCustomDialPies::SelectPie(TObject* sender)
 
         // Side case possible fix
 		if ((angle >= 345 && angle < 360) || (angle >= 45 && angle < -15))
-			//||(angle > 345 && angle < -15))
+
 		{
 			expandElements(i);
 			setSelectedPieIndex(i);

@@ -7,7 +7,7 @@
 __fastcall NoteDial::NoteDial(TComponent* Owner, int pieCount,
 		TAlphaColor pieColour, TAlphaColor selectedColour, TAlphaColor textColour)
 		: TCustomDialPies{Owner, pieCount, pieColour, selectedColour, textColour}
-		, chordManager(nullptr)//dialPtr(nullptr) // initialize ChordManager ptr in this dial
+		, chordManager(nullptr) // initialize ChordManager ptr in this dial
 {
     // Initialization code
 	setPieCount(pieCount);
@@ -17,8 +17,6 @@ __fastcall NoteDial::NoteDial(TComponent* Owner, int pieCount,
 	setPieColour(pieColour);
 	setSelectedColour(selectedColour);
 	setTextColour(textColour);
-
-	//setSelectedPieIndex(-1);
 
 	this->StyleLookup = "arcdialstyle"; // force setting to TArcDial default
     // or leave empty for invisibe dial
@@ -67,19 +65,15 @@ void __fastcall NoteDial::SelectPie(TObject* sender)
 
         // Side case possible fix
 		if ((angle >= 345 && angle < 360) || (angle >= 45 && angle < -15))
-			//||(angle > 345 && angle < -15))
 		{
 			expandElements(i);
 			setSelectedPieIndex(i);
 
-			if (dialPtr)//->getSelectedPieIndex() >= 0)
+			if (dialPtr)
 			{
 				collapseOtherDial(dialPtr);
-				//chordManager->changeScaleRoot(i);
-				//ShowMessage("making new scale");
 			}
-//				}
-			//else
+
 				chordManager->createChord(0);
 
 			//TEST
@@ -94,16 +88,15 @@ void __fastcall NoteDial::SelectPie(TObject* sender)
 			{
 				expandElements(i);
 				setSelectedPieIndex(i);
-//				if (dialPtr)
-//				{
-					if (dialPtr)//->getSelectedPieIndex() >= 0)
+
+					if (dialPtr)
 					{
 						collapseOtherDial(dialPtr);
+						//Test
 						//chordManager->changeScaleRoot(i);
 						//ShowMessage("making new scale");
 					}
-//				}
-				//else
+
 					chordManager->createChord(i);
 
 				//TEST
@@ -118,17 +111,14 @@ void __fastcall NoteDial::SelectPie(TObject* sender)
 			{
 				expandElements(i);
 				setSelectedPieIndex(i);
-//				if (dialPtr)
-//				{
-					if (dialPtr)//->getSelectedPieIndex() >= 0)
-					{
-						collapseOtherDial(dialPtr);
-						//chordManager->changeScaleRoot(i);
-						//ShowMessage("Making new scale");
-                    }
-//				}
-				//else
-					chordManager->createChord(i);
+
+				if (dialPtr)
+				{
+					collapseOtherDial(dialPtr);
+
+				}
+
+				chordManager->createChord(i);
 
 				// TEST
 				//printSelected(testLabels[0]);
@@ -173,7 +163,7 @@ void NoteDial::collapseOtherDial(ScaleDial* dial)
 __fastcall ScaleDial::ScaleDial(TComponent* Owner, int pieCount,
 		TAlphaColor pieColour, TAlphaColor selectedColour, TAlphaColor textColour)
 		: TCustomDialPies{Owner, pieCount, pieColour, selectedColour, textColour}
-        , indexPtr(nullptr) //dialPtr(nullptr)//, chordManager(nullptr)
+		, indexPtr(nullptr)
 {
     // Initialization code
 	setPieCount(pieCount);
@@ -194,8 +184,6 @@ __fastcall ScaleDial::ScaleDial(TComponent* Owner, int pieCount,
 
 void __fastcall ScaleDial::SelectPie(TObject* sender)
 {
-//	if (!chordManager)
-//        collapseElements();
     // Things to happen first each time dial is turned
 	collapseElements();
 	setSelectedPieIndex(0);
@@ -215,7 +203,6 @@ void __fastcall ScaleDial::SelectPie(TObject* sender)
 
             // Side case possible fix
 		if ((angle >= 345 && angle < 360) || (angle >= 45 && angle < -15))
-			//||(angle > 345 && angle < -15))
 		{
             expandElements(i);
 			setSelectedPieIndex(i);

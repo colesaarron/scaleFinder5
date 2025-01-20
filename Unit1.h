@@ -45,20 +45,10 @@ public:		// User declarations
     TLabel* LabelAppTitle;
 	TLabel* LabelOnOff1;
 	TLabel* LabelOnOff2;
-//	TLabel* Label1st;
-//	TLabel* Label2nd;
-//	TLabel* Label3rd;
-//	TLabel* Label4th;
-//	TLabel* Label5th;
-//	TLabel* Label6th;
-//	TLabel* Label7th;
-//	TLabel* Label8th;
     int beepCount;
 
     std::vector<TLabel*> scaleNoteLabels;
 	__fastcall TForm1(TComponent* Owner);
-	//void __fastcall CreateKey(TCustomDialPies* dial);
-	//void __fastcall CreateScale(TCustomDialPies* dial1, TCustomDialPies* dial2);
 	void __fastcall HandleDialChange(TObject* Sender);
 	void setLabelsVisible(std::vector<TLabel*> labelVector);
 	void showDegreeLabels(std::vector<TLabel*> labelVector);

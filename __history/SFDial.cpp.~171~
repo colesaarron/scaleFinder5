@@ -74,12 +74,12 @@ void __fastcall NoteDial::SelectPie(TObject* sender)
 
 			if (dialPtr)//->getSelectedPieIndex() >= 0)
 			{
-				//collapseOtherDial(dialPtr);
-				chordManager->createScaleFromPrevious(dialPtr->getSelectedPieIndex());
+				collapseOtherDial(dialPtr);
+				//chordManager->changeScaleRoot(i);
 				//ShowMessage("making new scale");
 			}
 //				}
-			else
+			//else
 				chordManager->createChord(0);
 
 			//TEST
@@ -94,17 +94,16 @@ void __fastcall NoteDial::SelectPie(TObject* sender)
 			{
 				expandElements(i);
 				setSelectedPieIndex(i);
-				//chordManager = new ChordManager();
 //				if (dialPtr)
 //				{
 					if (dialPtr)//->getSelectedPieIndex() >= 0)
 					{
-						//collapseOtherDial(dialPtr);
-						chordManager->createScaleFromPrevious(dialPtr->getSelectedPieIndex());
+						collapseOtherDial(dialPtr);
+						//chordManager->changeScaleRoot(i);
 						//ShowMessage("making new scale");
 					}
 //				}
-				else
+				//else
 					chordManager->createChord(i);
 
 				//TEST
@@ -124,11 +123,11 @@ void __fastcall NoteDial::SelectPie(TObject* sender)
 					if (dialPtr)//->getSelectedPieIndex() >= 0)
 					{
 						collapseOtherDial(dialPtr);
-						//chordManager->createScaleFromPrevious(dialPtr->getSelectedPieIndex());
+						//chordManager->changeScaleRoot(i);
 						//ShowMessage("Making new scale");
                     }
 //				}
-				else
+				//else
 					chordManager->createChord(i);
 
 				// TEST
@@ -214,13 +213,32 @@ void __fastcall ScaleDial::SelectPie(TObject* sender)
 		if (angle < 0)
 			angle += 360.0;
 
+            // Side case possible fix
+		if ((angle >= 345 && angle < 360) || (angle >= 45 && angle < -15))
+			//||(angle > 345 && angle < -15))
+		{
+            expandElements(i);
+			setSelectedPieIndex(i);
+			indexPtr = &i;
+			if (chordManager) // Check if chordManager is set
+			{
+				chordManager->createScale(i);
+			}
+			else
+				ShowMessage("dial 2 error");
+
+	  		//Test
+			//printSelected(testLabels[0]);
+			break;
+		}
+
 		if (startAngle < endAngle)
 		{
 			if (angle >= startAngle && angle < endAngle)
 			{
 				expandElements(i);
 				setSelectedPieIndex(i);
-                indexPtr = &i;
+				indexPtr = &i;
 				if (chordManager) // Check if chordManager is set
 				{
 					chordManager->createScale(i);

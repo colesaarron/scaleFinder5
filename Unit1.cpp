@@ -4,8 +4,6 @@
 #pragma hdrstop
 
 #include "Unit1.h"
-//#include "CustomDialPies.h"
-//#include "SFDial.h"
 #include "scale.h"
 #include "note.h"
 #include "ChordManager.h"
@@ -23,22 +21,12 @@ constexpr int SCREEN_HEIGHT = 480;
 std::vector<Scale> scaleObjects{};
 std::vector<Note> noteObjects{};
 
-// Audio array for removing clicks
-//std::vector<Beep*> noteSounds{};
 
 TForm1 *Form1;
 //---------------------------------------------------------------------------
 __fastcall TForm1::TForm1(TComponent* Owner)
 	: TForm(Owner)
 {
-//    int screenWidth = Screen->Width;
-//    int screenHeight = Screen->Height;
-//
-//	this->Width = screenWidth * 0.6;  // Set width to 80% of screen width
-//	this->Height = screenHeight * 0.6; // Set height to 80% of screen height
-
-	//this->ScaleBy(Screen->PixelsPerInch, 96);  // Scale according to DPI
-
 	beepCount = 8;
 
 	this->Width = 780;
@@ -68,7 +56,6 @@ __fastcall TForm1::TForm1(TComponent* Owner)
 	// Since they are overrides sepcific to each dial, we set the Onchange
 	// event here
 	dial1->setIndexPtr(indexPtr);
-//	dial1->setDialPtr(dial2);
 	dial1->OnChange = dial1->SelectPie;
 	dial1->Width = 100;
 	dial1->Height = 100;
@@ -103,8 +90,8 @@ __fastcall TForm1::TForm1(TComponent* Owner)
     dial2->setDialPtr(dial2);
 	dial2->Width = 100;
 	dial2->Height = 100;
-	dial2->Position->X = 510;//SCREEN_WIDTH * 3 / 4 - dial2->Width / 2;
-	dial2->Position->Y = 150;//SCREEN_HEIGHT / 2 - dial2->Height;
+	dial2->Position->X = 510;
+	dial2->Position->Y = 150;
 	dial2->createPolarPies();
 	dial2->setLabels(0, "Hm");
 	dial2->setLabels(1, "Mx");
@@ -120,7 +107,6 @@ __fastcall TForm1::TForm1(TComponent* Owner)
 	dial2->setLabels(11, "D");
 	//dial2->StyleLookup = "arcdialstyle"; // important for derived dials
 	dial2->Enabled = false;
-	//dial2->Opacity = 1;
 	dial2->Visible = true;
 	dial2->BringToFront();
 	dial2->repaintDial();
@@ -135,8 +121,8 @@ __fastcall TForm1::TForm1(TComponent* Owner)
 	CirclePlayNote->Parent = this;
 	CirclePlayNote->Width = 75;
 	CirclePlayNote->Height = 75;
-	CirclePlayNote->Position->X = 50;//dial1->Position->X - dial1->Width / 2;
-	CirclePlayNote->Position->Y = 320;//dial1->Position->Y + dial1->Height * 1.5;
+	CirclePlayNote->Position->X = 50;
+	CirclePlayNote->Position->Y = 320;
 	CirclePlayNote->Fill->Kind = TBrushKind::Solid;
 	CirclePlayNote->Fill->Color = claAquamarine;
 	CirclePlayNote->Stroke->Color = claAquamarine;
@@ -148,8 +134,8 @@ __fastcall TForm1::TForm1(TComponent* Owner)
 	CirclePlayScale->Parent = this;
 	CirclePlayScale->Width = 75;
 	CirclePlayScale->Height = 75;
-	CirclePlayScale->Position->X = 640;//dial2->Position->X + dial2->Width / 2;
-	CirclePlayScale->Position->Y = 320;//dial2->Position->Y + dial2->Height * 1.5;
+	CirclePlayScale->Position->X = 640;
+	CirclePlayScale->Position->Y = 320;
 	CirclePlayScale->Fill->Kind = TBrushKind::Solid;
 	CirclePlayScale->Fill->Color = claAquamarine;
     CirclePlayScale->Stroke->Color = claAquamarine;
@@ -179,7 +165,7 @@ __fastcall TForm1::TForm1(TComponent* Owner)
 	//ButtonPlayScale->Opacity = LOW_OPACITY;
 
 	ButtonPlayNote->SetFocus();
-//// ----------------------------------------------------------------
+// ----------------------------------------------------------------
 
 	Dial1Light = new TCircle(this);
 	Dial1Light->Parent = this;
@@ -223,7 +209,7 @@ __fastcall TForm1::TForm1(TComponent* Owner)
 	LabelFrequency->Width = 65;
 	LabelFrequency->Height = 20;
 	LabelFrequency->Position->X = SCREEN_WIDTH / 2 - 55;
-	LabelFrequency->Position->Y = dial2->Position->Y;// SCREEN_HEIGHT / 2;
+	LabelFrequency->Position->Y = dial2->Position->Y;
 	LabelFrequency->StyledSettings = TStyledSettings();
 	LabelFrequency->TextSettings->VertAlign = TTextAlign::Trailing;
 	LabelFrequency->TextSettings->HorzAlign = TTextAlign::Center;
@@ -240,7 +226,7 @@ __fastcall TForm1::TForm1(TComponent* Owner)
 	LabelRoot->Width = 50;
 	LabelRoot->Height = 50;
 	LabelRoot->Position->X = SCREEN_WIDTH / 2 - 20;
-	LabelRoot->Position->Y = dial1->Position->Y - dial1->Height / 2;// SCREEN_HEIGHT / 2;
+	LabelRoot->Position->Y = dial1->Position->Y - dial1->Height / 2;
 	LabelRoot->StyledSettings = TStyledSettings();
 	LabelRoot->TextSettings->VertAlign = TTextAlign::Center;
 	LabelRoot->TextSettings->HorzAlign = TTextAlign::Leading;
@@ -257,7 +243,7 @@ __fastcall TForm1::TForm1(TComponent* Owner)
 	LabelScale->Width = 120;
 	LabelScale->Height = 120;
 	LabelScale->Position->X = SCREEN_WIDTH / 2 - 72;
-	LabelScale->Position->Y = dial1->Position->Y + dial1->Height / 4;// SCREEN_HEIGHT / 2;
+	LabelScale->Position->Y = dial1->Position->Y + dial1->Height / 4;
 	LabelScale->StyledSettings = TStyledSettings();
 	LabelScale->TextSettings->VertAlign = TTextAlign::Trailing;
 	LabelScale->TextSettings->HorzAlign = TTextAlign::Center;
@@ -309,7 +295,7 @@ __fastcall TForm1::TForm1(TComponent* Owner)
 		scaleNoteLabel->Width = NOTE_LABEL_SIZE;
 		scaleNoteLabel->Height = NOTE_LABEL_SIZE;
 		scaleNoteLabel->Position->X = dial1->Position->X + 5 + (dial1->Width / 4) + (NOTE_LABEL_SIZE * i);
-		scaleNoteLabel->Position->Y = 20;// dial1->Position->Y - dial1->Height;// this->Height / 8;
+		scaleNoteLabel->Position->Y = 20;
 		scaleNoteLabel->StyledSettings = TStyledSettings(); // dissable all styled settings
 		scaleNoteLabel->TextSettings->VertAlign = TTextAlign::Center;
 		scaleNoteLabel->TextSettings->HorzAlign = TTextAlign::Center;
@@ -392,276 +378,9 @@ void TForm1::clearLabelText(TLabel* label)
 //----------------------------------------------------------------------
 
 
-
-//---------------------------------------------------------------------------
-
-//// Function to select pie slice when rotating dial 1
-//void __fastcall TForm1::ArcDial1Change(TObject *Sender)
-//{
-//	// Things to happen first each time dial is turned
-//	collapseAllElements(notePieObjects, noteLabelObjects, noteLabelStartPoints, 1);
-//	collapseAllElements(scalePieObjects, scaleLabelObjects, scaleLabelStartPoints, 2);
-//	clearLabelText(LabelRoot); // clear the selected root name from label
-//	clearLabelText(LabelScale); // clear the selected scale name from label
-//	destroyScales(scaleObjects); // destroy all scale objects
-//	destroyNotes(noteObjects);  // destroy all note objects
-//	showDegreeLabels(scaleNoteLabels); // display scale degree labels
-//
-//	// When a key is selected, a note is created. This note is used to
-//	// construct a scale. Only one note object and one scale object will
-//	// exsist in the notObject and scaleObject vectors at a given time.
-//	// Changing the first dial will destroy all note and scale objects
-//	// occupying the vectors and a new note will be created, starting the
-//	// process over. Scales cannot be constructed without a note(key).
-//
-//	if (ArcDial1->Value >= -15 && ArcDial1->Value <= 15)
-//	{
-//		expandElements(Pie1, LabelC, 1);
-//		Note noteC{"C"}; // create new note
-//		noteObjects.push_back(noteC); // push note to noteObjects vector
-//		Scale scaleC{noteC}; // create new scale object
-//		scaleObjects.push_back(scaleC); // push to scaleObjects vector
-//	}
-//
-//	else if (ArcDial1->Value > 15 && ArcDial1->Value <= 45)
-//	{
-//		expandElements(Pie2, LabelF, 1);
-//		Note noteF{"F"};
-//		noteObjects.push_back(noteF);
-//		Scale scaleF{noteF};
-//		scaleObjects.push_back(scaleF);
-//	}
-//
-//	else if (ArcDial1->Value > 45 && ArcDial1->Value <= 75)
-//	{
-//		expandElements(Pie3, LabelBFlat, 1);
-//		Note noteBFlat{"Bb"};
-//		noteObjects.push_back(noteBFlat);
-//		Scale scaleBFlat{noteBFlat};
-//		scaleObjects.push_back(scaleBFlat);
-//	}
-//
-//	else if (ArcDial1->Value > 75 && ArcDial1->Value <= 105)
-//	{
-//		expandElements(Pie4, LabelEFlat, 1);
-//		Note noteEFlat{"Eb"};
-//		noteObjects.push_back(noteEFlat);
-//		Scale scaleEFlat{noteEFlat};
-//		scaleObjects.push_back(scaleEFlat);
-//	}
-//
-//	else if (ArcDial1->Value > 105 && ArcDial1->Value <= 135)
-//	{
-//		expandElements(Pie5, LabelAFlat, 1);
-//		Note noteAFlat{"Ab"};
-//		noteObjects.push_back(noteAFlat);
-//		Scale scaleAFlat{noteAFlat};
-//		scaleObjects.push_back(scaleAFlat);
-//	}
-//
-//	else if (ArcDial1->Value > 135 && ArcDial1->Value <= 165)
-//	{
-//		expandElements(Pie6, LabelDFlat, 1);
-//		Note noteDFlat{"Db"};
-//		noteObjects.push_back(noteDFlat);
-//		Scale scaleDFlat{noteDFlat};
-//		scaleObjects.push_back(scaleDFlat);
-
-//	}
-//
-//	else if (ArcDial1->Value > 165 && ArcDial1->Value <= 195)
-//	{
-//		expandElements(Pie7, LabelFSharp, 1);
-//		Note noteFSharp{"F#"};
-//		noteObjects.push_back(noteFSharp);
-//		Scale scaleFSharp{noteFSharp};
-//		scaleObjects.push_back(scaleFSharp);
-//	}
-//
-//	else if (ArcDial1->Value > -165 && ArcDial1->Value <= -135)
-//	{
-//		expandElements(Pie8, LabelB, 1);
-//		Note noteB{"B"};
-//		noteObjects.push_back(noteB);
-//		Scale scaleB{noteB};
-//		scaleObjects.push_back(scaleB);
-//	}
-//
-//	else if (ArcDial1->Value > -135 && ArcDial1->Value <= -105)
-//	{
-//		expandElements(Pie9, LabelE, 1);
-//		Note noteE{"E"};
-//		noteObjects.push_back(noteE);
-//		Scale scaleE{noteE};
-//		scaleObjects.push_back(scaleE);
-//	}
-//
-//	else if (ArcDial1->Value > -105 && ArcDial1->Value <= -75)
-//	{
-//		expandElements(Pie10, LabelA, 1);
-//		Note noteA{};
-//		noteObjects.push_back(noteA);
-//		Scale scaleA{noteA};
-//		scaleObjects.push_back(scaleA);
-//	}
-//
-//	else if (ArcDial1->Value > -75 && ArcDial1->Value <= -45)
-//	{
-//		expandElements(Pie11, LabelD, 1);
-//		Note noteD{"D"};
-//		noteObjects.push_back(noteD);
-//		Scale scaleD{noteD};
-//		scaleObjects.push_back(scaleD);
-//	}
-//
-//	else if (ArcDial1->Value > -45 && ArcDial1->Value <= -15)
-//	{
-//		expandElements(Pie12, LabelG, 1);
-//		Note noteG{"G"};
-//        noteObjects.push_back(noteG);
-//		Scale scaleG{noteG};
-//		scaleObjects.push_back(scaleG);
-//	}
-//
-//	// Display note frequency
-//	LabelFrequency->Text = noteObjects[0].getFrequency();
-//
-//	// Display root note
-//	LabelRoot->Text = scaleObjects[0].getTonic().c_str();
-//
-//	LabelHz->Visible = true; // show frequency untis (Hz)
-//	setPieObjectsOpacity(scalePieObjects, MID_OPACITY);
-//	Dial2Light->Opacity = 1;
-//	ArcDial2->Enabled = true; // now user can select a scale
-//	ArcDial2->Cursor = crHandPoint;
-//
-//    // Enable tone sound controls
-//	ButtonPlayTone->Enabled = true;
-//    ButtonPlayTone->Opacity = 1;
-//    CirclePlayNote->Enabled = true;
-//	CirclePlayNote->Opacity = 1;
-//	CirclePlayScale->Opacity = 1;
-//	CirclePlayScale->Enabled = false; // only true when scale selected
-//	LabelOnOff2->Text = "ON";
-//
-//}
-////---------------------------------------------------------------------------
-//
-//void __fastcall TForm1::ArcDial2Change(TObject *Sender)
-//{
-//	collapseAllElements(scalePieObjects, scaleLabelObjects, scaleLabelStartPoints, 2);
-//	clearLabelText(LabelScale);
-//	removeLabelNotes(scaleNoteLabels);
-//	setLabelVisible(scaleNoteLabels);
-//
-//	Label2->Text = " ";
-//
-//	if (ArcDial2->Value >= -15 && ArcDial2->Value <= 15)
-//	{
-//		expandElements(Pie13, LabelMajor, 2);
-//		scaleObjects[0].setScale("Major");
-//	}
-//
-//	else if (ArcDial2->Value > 15 && ArcDial2->Value <= 45)
-//	{
-//		expandElements(Pie14, LabelMajorP, 2);
-//		scaleObjects[0].setScale("Major Pentatonic");
-//
-//		setLabelInvisible(scaleNoteLabels, 3);
-//		setLabelInvisible(scaleNoteLabels, 6);
-//	}
-//
-//	else if (ArcDial2->Value > 45 && ArcDial2->Value <= 75)
-//	{
-//		expandElements(Pie15, LabelMinorP, 2);
-//		scaleObjects[0].setScale("Minor Pentatonic");
-//
-//		setLabelInvisible(scaleNoteLabels, 1);
-//		setLabelInvisible(scaleNoteLabels, 5);
-//	}
-//
-//	else if (ArcDial2->Value > 75 && ArcDial2->Value <= 105)
-//	{
-//		expandElements(Pie16, LabelLocrian, 2);
-//		scaleObjects[0].setScale("Locrian");
-//	}
-//
-//	else if (ArcDial2->Value > 105 && ArcDial2->Value <= 135)
-//	{
-//		expandElements(Pie17, LabelLydian, 2);
-//		scaleObjects[0].setScale("Lydian");
-//	}
-//
-//	else if (ArcDial2->Value > 135 && ArcDial2->Value <= 165)
-//	{
-//		expandElements(Pie18, LabelPhrygian, 2);
-//		scaleObjects[0].setScale("Phrygian");
-//	}
-//
-//	else if ((ArcDial2->Value > 165 && ArcDial2->Value <= 195) ||
-//		(ArcDial2->Value > 195 && ArcDial2->Value <= 225))
-//	{
-//		expandElements(Pie19, LabelMelMinorDown, 2);
-//		scaleObjects[0].setScale("Melodic minor down");
-//	}
-//
-//	else if ((ArcDial2->Value > -175 && ArcDial2->Value <= -135) ||
-//		(ArcDial2->Value > 225 && ArcDial2->Value <= 255))
-//	{
-//		expandElements(Pie20, LabelMelMinorUp, 2);
-//		scaleObjects[0].setScale("Melodic minor up");
-//	}
-//
-//	else if ((ArcDial2->Value > -135 && ArcDial2->Value <= -105) ||
-//		(ArcDial2->Value > 255 && ArcDial2->Value <= 285))
-//	{
-//		expandElements(Pie21, LabelMixo, 2);
-//		scaleObjects[0].setScale("Mixolydian");
-//	}
-//
-//	else if ((ArcDial2->Value > -105 && ArcDial2->Value <= -75) ||
-//		(ArcDial2->Value > 285 && ArcDial2->Value <= 315))
-//	{
-//		expandElements(Pie22, LabelHarmMinor, 2);
-//		scaleObjects[0].setScale("Harmonic minor");
-//	}
-//
-//	else if ((ArcDial2->Value > -75 && ArcDial2->Value <= -45) ||
-//		(ArcDial2->Value > 315 && ArcDial2->Value <= 345))
-//	{
-//		expandElements(Pie23, LabelDorian, 2);
-//		scaleObjects[0].setScale("Dorian");
-//	}
-//
-//	else if ((ArcDial2->Value > -45 && ArcDial2->Value <= -15) ||
-//		(ArcDial2->Value > 345 && ArcDial2->Value <= 375))
-//	{
-//		expandElements(Pie24, LabelMinor, 2);
-//		scaleObjects[0].setScale("Minor");
-//	}
-//
-//	LabelScale->Text = scaleObjects[0].getName().c_str();
-//	printNotesToLabels(scaleObjects, scaleNoteLabels);
-//	ButtonPlayScale->Enabled = true; // now user can play scale sounds
-//    ButtonPlayScale->Opacity = 1;
-//	CirclePlayScale->Enabled = true;
-//	CirclePlayScale->Opacity = 1;
-//
-//	// Test
-//    //Label2->Text = scaleObjects[0].getNoteString().c_str();
-//
-//}
-//
-////---------------------------------------------------------------------------
-
-
-
-//---------------------------------------------------------------------------
-
-
 void __fastcall TForm1::ExitClick(TObject *Sender)
 {
-    Close();
+	Close();
 }
 
 void TForm1::changeLabelFontSize(TLabel* label, int size)

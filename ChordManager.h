@@ -58,10 +58,6 @@ public:
 	void __fastcall PlayScaleOnClick(TObject *Sender);
 
 
-
-//	NoteDial* dial1;
-//    ScaleDial* dial2;
-
 };
 //---------------------------------------------------------------------------
 #endif

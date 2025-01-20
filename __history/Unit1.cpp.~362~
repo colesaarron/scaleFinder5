@@ -39,6 +39,8 @@ __fastcall TForm1::TForm1(TComponent* Owner)
 
 	//this->ScaleBy(Screen->PixelsPerInch, 96);  // Scale according to DPI
 
+	beepCount = 8;
+
 	this->Width = 780;
 	this->Height = 480;
 	this->BorderStyle = TFmxFormBorderStyle::Sizeable;
@@ -51,7 +53,10 @@ __fastcall TForm1::TForm1(TComponent* Owner)
 
 	ChordManager* chordManager = new ChordManager(); // creat ChordManager instance
 	int* indexPtr = new int();
-	//ScaleDial* dialPtr = nullptr;
+
+	Timer1 = new TTimer(this);
+	Timer1->Interval = 500;
+    Timer1->OnTimer = Timer1Timer;
 
 	// Generate two custom SFDial dials (derived from TCustomDialPies)
 	dial1 = new NoteDial(this, 12, claTurquoise, claAquamarine, claBlack);
@@ -203,7 +208,7 @@ __fastcall TForm1::TForm1(TComponent* Owner)
     LabelHz->StyledSettings = TStyledSettings();
 	LabelHz->TextSettings->VertAlign = TTextAlign::Trailing;
 	LabelHz->TextSettings->HorzAlign = TTextAlign::Leading;
-	LabelHz->TextSettings->Font->Family = "Magneto";
+	LabelHz->TextSettings->Font->Family = "Source Code Pro";
 	LabelHz->TextSettings->Font->Size = 12;
 	LabelHz->Font->Style = TFontStyles() << TFontStyle::fsBold;
 	LabelHz->TextSettings->FontColor = claSnow;
@@ -659,9 +664,26 @@ void __fastcall TForm1::ExitClick(TObject *Sender)
     Close();
 }
 
-void TForm1::increaseLabelText(TLabel* label)
+void TForm1::changeLabelFontSize(TLabel* label, int size)
 {
-
+	label->TextSettings->Font->Size = size;
 }
+
+void __fastcall TForm1::Timer1Timer(TObject *Sender)
+{
+//	for (int i {0}; i < 8; i++)
+//	{
+//		chordManager->play
+//		ResizeLabel();
+//		beepCount++;
+//	}
+//	}
+//    else
+//	{
+//		Timer1->Enabled = false; // Stop the timer after sequence is complete
+//	}
+}
+
+
 //---------------------------------------------------------------------------
 

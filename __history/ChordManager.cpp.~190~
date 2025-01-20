@@ -15,10 +15,10 @@ ChordManager::~ChordManager()
 
 void ChordManager::createChord(int selectedPieIndex)
 {
-	Form1->dial2->Enabled = False;
-	Form1->CirclePlayScale->Enabled = False;
-	Form1->ButtonPlayScale->Enabled = False;
-    Form1->LabelScale->Text = "";
+	Form1->dial2->Enabled = false;
+	Form1->CirclePlayScale->Enabled = false;
+	Form1->ButtonPlayScale->Enabled = false;
+	Form1->LabelScale->Text = "";
 
 	destroyChords();
 
@@ -130,12 +130,12 @@ void ChordManager::createChord(int selectedPieIndex)
 		printRootNote(Form1->LabelRoot);
 		printRootNoteFrequency(Form1->LabelFrequency);
 
-		Form1->dial2->Enabled = True;
+		Form1->dial2->Enabled = true;
 		Form1->Dial1Light->Opacity = 1;
 		Form1->Dial2Light->Opacity = 1;
 		Form1->setLabelsVisible(Form1->scaleNoteLabels);
-		//Form1->showDegreeLabels(Form1->scaleNoteLabels);
-		Form1->LabelHz->Visible = True;
+		Form1->showDegreeLabels(Form1->scaleNoteLabels);
+		Form1->LabelHz->Visible = true;
 		Form1->CirclePlayNote->Opacity = 1;
 		Form1->CirclePlayNote->Enabled = true;
 
@@ -172,8 +172,8 @@ void ChordManager::createScale(int selectedPieIndex)
 	//destroyChords();
 	Form1->setLabelsVisible(Form1->scaleNoteLabels);
 	Form1->CirclePlayScale->Opacity = LOW_OPACITY;
-	Form1->CirclePlayScale->Enabled = False;
-    Form1->ButtonPlayScale->Enabled = False;
+	Form1->CirclePlayScale->Enabled = false;
+    Form1->ButtonPlayScale->Enabled = false;
 
 	switch (selectedPieIndex)
 	{
@@ -345,7 +345,89 @@ void ChordManager::createScaleFromPrevious(int selectedPieIndex, int index)
 		Form1->CirclePlayScale->Enabled = true;
 		Form1->ButtonPlayScale->Enabled = true;
 
-    }
+	}
+}
+
+void ChordManager::changeScaleRoot(int index)
+{
+    //destroyScales();
+	//destroyChords();
+	if (index >= 0 && index < 12)
+	{
+		Note* note = nullptr;
+		Scale* scale = nullptr;
+		std::string scaleName = " ";
+
+
+		switch (index)
+		{
+			case 0 :
+				note = new Note{"A"};
+				break;
+			case 1 :
+				note = new Note{"E"};
+				break ;
+			case 2 :
+				note = new Note{"B"};
+				break;
+			case 3 :
+				note = new Note{"F#"};
+				break;
+			case 4 :
+				note = new Note{"Db"};
+			case 5 :
+				note = new Note{"Ab"};
+				break;
+			case 6 :
+				note = new Note{"Eb"};
+				break;
+			case 7 :
+				note = new Note{"Bb"};
+				break;
+			case 8 :
+				note = new Note{"F"};			   
+				break;
+			case 9 :
+				note = new Note{"C"}; // create new note
+				break;
+			case 10:
+				note = new Note{"G"};
+				break;
+			case 11:
+				note = new Note{"D"};			   
+				break;
+			default:			   
+				note = nullptr;
+				scale = nullptr;
+				break;
+		}
+
+		if (note)
+		{
+				scaleObjects[0]->setScaleRoot(note);
+		}
+
+//		if (std::size(noteObjects) > 0)
+//		{
+//			//noteObjects.push_back(note);
+//			scale = new Scale{*noteObjects[0]};
+//			this->scaleObjects.push_back(scale);
+//			this->scaleObjects[0]->setScale(scaleName);
+//			//ShowMessage("new scale created from last index");
+//		}
+		else
+			ShowMessage("scaleObjectsEmpty");
+
+		printRootNote(Form1->LabelRoot);
+		printRootNoteFrequency(Form1->LabelFrequency);
+
+		printNotesToLabels(Form1->scaleNoteLabels);
+		
+		Form1->CirclePlayScale->Opacity = 1;
+		Form1->CirclePlayScale->Enabled = true;
+		Form1->ButtonPlayScale->Enabled = true;
+
+	}
 }
 
 void ChordManager::destroyScales()

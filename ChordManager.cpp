@@ -108,12 +108,6 @@ void ChordManager::createChord(int selectedPieIndex)
 				break;
 		}
 
-	//	if (note)
-	//	{
-	//		scale = new Scale{*note};
-	//		noteObjects.push_back(note);
-	//        scaleObjects.push_back(scale);
-	//	}
 
 	//	//TEST
 	//	if (std::size(noteObjects) > 0)
@@ -144,23 +138,19 @@ void ChordManager::createChord(int selectedPieIndex)
 
 void ChordManager::destroyChords()
 {
-//	if (std::size(noteObjects) > 0)
-//	{
 		for (auto note : noteObjects)
 		{
 			delete note;
 		}
-//	}
+
 
 	noteObjects.clear();
 
-//	if (std::size(scaleObjects) > 0)
-//	{
 		for (auto scale : scaleObjects)
 		{
 			delete scale;
 		}
-//	}
+
 
 	scaleObjects.clear();
 
@@ -169,7 +159,6 @@ void ChordManager::destroyChords()
 
 void ChordManager::createScale(int selectedPieIndex)
 {
-	//destroyChords();
 	Form1->setLabelsVisible(Form1->scaleNoteLabels);
 	Form1->CirclePlayScale->Opacity = LOW_OPACITY;
 	Form1->CirclePlayScale->Enabled = false;
@@ -218,7 +207,6 @@ void ChordManager::createScale(int selectedPieIndex)
 			this->scaleObjects[0]->setScale("Dorian");
 			break;
 		default:
-			//destroyScales();
 			break;
 	}
 
@@ -233,8 +221,7 @@ void ChordManager::createScale(int selectedPieIndex)
 // Function to for allowing continuous scale creation. To be finished...
 void ChordManager::createScaleFromPrevious(int selectedPieIndex, int index)
 {
-	//destroyScales();
-	//destroyChords();
+
 	if (selectedPieIndex >= 0 && selectedPieIndex < 12)
 	{
 		destroyScales();
@@ -324,15 +311,6 @@ void ChordManager::createScaleFromPrevious(int selectedPieIndex, int index)
 				scaleObjects.push_back(scale);
 			}
 		}
-
-//		if (std::size(noteObjects) > 0)
-//		{
-//			//noteObjects.push_back(note);
-//			scale = new Scale{*noteObjects[0]};
-//			this->scaleObjects.push_back(scale);
-//			this->scaleObjects[0]->setScale(scaleName);
-//			//ShowMessage("new scale created from last index");
-//		}
 		else
 			ShowMessage("scaleObjectsEmpty");
 
@@ -350,8 +328,6 @@ void ChordManager::createScaleFromPrevious(int selectedPieIndex, int index)
 
 void ChordManager::changeScaleRoot(int index)
 {
-    //destroyScales();
-	//destroyChords();
 	if (index >= 0 && index < 12)
 	{
 		Note* note = nullptr;
@@ -406,15 +382,6 @@ void ChordManager::changeScaleRoot(int index)
 		{
 				scaleObjects[0]->setScaleRoot(note);
 		}
-
-//		if (std::size(noteObjects) > 0)
-//		{
-//			//noteObjects.push_back(note);
-//			scale = new Scale{*noteObjects[0]};
-//			this->scaleObjects.push_back(scale);
-//			this->scaleObjects[0]->setScale(scaleName);
-//			//ShowMessage("new scale created from last index");
-//		}
 		else
 			ShowMessage("scaleObjectsEmpty");
 
@@ -432,23 +399,18 @@ void ChordManager::changeScaleRoot(int index)
 
 void ChordManager::destroyScales()
 {
-    //	if (std::size(noteObjects) > 0)
-//	{
 		for (auto note : noteObjects)
 		{
 			delete note;
 		}
-//	}
+
 
 	noteObjects.clear();
 
-//	if (std::size(scaleObjects) > 0)
-//	{
 		for (auto scale : scaleObjects)
 		{
 			delete scale;
 		}
-//	}
 
 	scaleObjects.clear();
 
@@ -465,9 +427,8 @@ void ChordManager::printNotesToLabels(std::vector<TLabel*> labelVector)
 
 	if (scaleObjects[0]->m_notes2.size() < 8)
 	{
-		//ShowMessage("m_notes2 does not have enough elements!");
-        Form1->showDegreeLabels(Form1->scaleNoteLabels);
-        return;
+		Form1->showDegreeLabels(Form1->scaleNoteLabels);
+		return;
 	}
 
 	for (int i{0}; i < 8; i++)
@@ -483,37 +444,6 @@ void ChordManager::printNotesToLabels(std::vector<TLabel*> labelVector)
 			labelVector[i]->Text = "Invalid";
 		}
 	}
-
-//	for (int i{0}; i < 8; i++)
-//	{
-//		labelVector[i]->Opacity = 1;
-//		labelVector[i]->TextSettings->Font->Size = 28;
-//		if (scaleObjects.size() > 0 && scaleObjects[0]->m_notes2.size() > i)
-//		{
-//			labelVector[i]->Text = scaleObjects[0]->m_notes2[i]->getName().c_str();
-//		}
-//		else
-//			ShowMessage("problem printing scale");
-////
-//		if (scaleObjects.size() > 0 && scaleObjects[0] != nullptr &&
-//			scaleObjects[0]->m_notes2.size() > i && scaleObjects[0]->m_notes2[i] != nullptr)
-//		{
-//			labelVector[i]->Text = scaleObjects[0]->m_notes2[i]->getName().c_str();
-//		}
-//		else
-//		{
-//			ShowMessage("scaleObjects null");
-//		}
-
-
-//		if (labelVector.size() > i && labelVector[i] == nullptr)
-//		{
-//			ShowMessage("Label vector null");
-//		}
-//		else
-//			labelVector[i]->Text = scaleObjects[0]->m_notes2[i]->getName().c_str();
-//	}
-
 
 }
 
@@ -531,7 +461,7 @@ void ChordManager::printRootNoteFrequency(TLabel* label)
 
 }
 
-	// Display root note
+// Display root note
 void ChordManager::printRootNote(TLabel* label)
 {
 	if (label != nullptr)
@@ -582,9 +512,7 @@ void ChordManager::playScaleTones(std::vector<Scale*> scaleObjects,
 				continue;
 			else
 			{
-//				Form1->changeLabelFontSize(Form1->scaleNoteLabels[i], 40);
 				Beep(scaleObjects[0]->m_notes2[i]->getFrequency(), 500);
-//                Form1->changeLabelFontSize(Form1->scaleNoteLabels[i], 28);
 			}
 
 		}
@@ -598,9 +526,7 @@ void ChordManager::playScaleTones(std::vector<Scale*> scaleObjects,
 				continue;
 			else
 			{
-//				Form1->changeLabelFontSize(Form1->scaleNoteLabels[i], 40);
 				Beep(scaleObjects[0]->m_notes2[i]->getFrequency(), 500);
-//				Form1->changeLabelFontSize(Form1->scaleNoteLabels[i], 28);
 			}
 		}
 	}
@@ -609,27 +535,15 @@ void ChordManager::playScaleTones(std::vector<Scale*> scaleObjects,
 	{
 		for (int i{7}; i >= 0; i--) // play in reverse order
 		{
-//			Form1->changeLabelFontSize(Form1->scaleNoteLabels[i], 40);
 			Beep(scaleObjects[0]->m_notes2[i]->getFrequency(), 500);
-//			Form1->changeLabelFontSize(Form1->scaleNoteLabels[i], 28);
 		}
 	}
 
 	else
 	{
-//		for (auto scale : scaleObjects)
-//		{
-//			for (auto note : scale->m_notes2)
-//			{
-//				Beep(note->getFrequency(), 500);
-//			}
-//		}
-
 		for (int i{0}; i < 8; i++)
 		{
-//			Form1->changeLabelFontSize(Form1->scaleNoteLabels[i], 40);
 			Beep(scaleObjects[0]->m_notes2[i]->getFrequency(), 500);
-//			Form1->changeLabelFontSize(Form1->scaleNoteLabels[i], 28);
 		}
 	}
 

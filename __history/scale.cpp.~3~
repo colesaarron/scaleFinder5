@@ -43,6 +43,7 @@ void Scale::checkNoteFrequency()
 		if (m_notes2[i]->getFrequency() < m_notes2[i - 1]->getFrequency())
 			{
 				m_notes2[i]->increaseOctave(1);
+				//m_notes2[i]->setFrequency();
 				m_notes2[i]->increaseFrequency(2);
 			}
 	}

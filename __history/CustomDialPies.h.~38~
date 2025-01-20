@@ -21,7 +21,7 @@
 #include <FMX.Edit.hpp>
 #include <vector>
 #include <cmath>
-#include "ChordManager.h"
+//#include "ChordManager.h"
 
 //class TForm1;
 
@@ -41,10 +41,6 @@ private:
     TAlphaColor m_pieColour;
 	TAlphaColor m_selectedColour;
 	TAlphaColor m_textColour;
-//	double m_dialRadius;
-//	double m_pieRadius;
-//	double m_dialCentreX;
-//	double m_dialCentreY;
 	int m_selectedPieIndex;
 	TAlphaColor dialColour;
 protected:
@@ -61,8 +57,6 @@ public:
 	//void __fastcall positionPies();
 
 	// Public methods to manage pies
-	void createPie(int angle, int offset); //unused
-	void createPies(int pieElements, int offset); // unused
 	void createPolarPie(int scale, int angle);
 	void createPolarPies();
 
@@ -70,16 +64,18 @@ public:
 	void expandElements(int pieIndex);
 	void collapseElements();
 
-	ChordManager chordManager;
+//	ChordManager chordManager;
 
 	void setLabels(int index, String text);
 
+    virtual void repaintDial();
 	void resetTextColours(TAlphaColor colour);
 	void resetPieColours(TAlphaColor colour, TAlphaColor selectColour);
 
     void setSelectedPieIndex(int index);
 
-    // Methods to override depending on application
+	// Methods to override depending on application
+	// Override this to set what happens when dial changes
 	virtual void __fastcall SelectPie(TObject* Sender);
 	virtual void __fastcall OnDialChange(TObject* Sender);
 	virtual void __fastcall SetOnChange(TNotifyEvent event);
@@ -103,6 +99,14 @@ public:
 	void showTestLabel();
 	void hideTestLabel();
 	std::vector<TLabel*> testLabels;
+
+    void makeInvisible();
+	void makeVisible();
+	void hideElements(bool dial, bool pies, bool labels);
+	void setElementVisibility(bool pie, bool label, int index, bool visible);
+	void showElements(bool dial, bool pies, bool labels);
+	void setTransparency(bool dial, bool pies, bool labels, int value);
+
 
 
 

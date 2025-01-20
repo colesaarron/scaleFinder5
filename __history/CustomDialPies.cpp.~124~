@@ -312,12 +312,28 @@ void __fastcall TCustomDialPies::SelectPie(TObject* sender)
 		if (angle < 0)
 			angle += 360.0;
 
+        // Side case possible fix
+		if ((angle >= 345 && angle < 360) || (angle >= 45 && angle < -15))
+			//||(angle > 345 && angle < -15))
+		{
+			expandElements(i);
+			setSelectedPieIndex(i);
+
+            // User code should go here if overriding this fucntion
+
+			//TEST
+			printSelected(testLabels[0]);
+			break;
+		}
+
 		if (startAngle < endAngle) 
 		{
 			if (angle >= startAngle && angle < endAngle) 
 			{
 				expandElements(i);
 				m_selectedPieIndex = i;
+
+				// User code
 
 				//TEST
 				printSelected(testLabels[0]);
@@ -331,6 +347,8 @@ void __fastcall TCustomDialPies::SelectPie(TObject* sender)
 				expandElements(i);
 				m_selectedPieIndex = i;
 
+                // User code
+
 				// Test
 				printSelected(testLabels[0]);
 				break;
@@ -343,12 +361,6 @@ void __fastcall TCustomDialPies::OnDialChange(TObject* Sender)
 {
 	this->SelectPie(Sender);
 
-//	TForm1* form = dynamic_cast<TForm1*>(this->Owner);
-//
-//	if (form)
-//	{
-//		form->CreateKey(this);
-//	}
 }
 
 void __fastcall TCustomDialPies::SetOnChange(TNotifyEvent event)
@@ -377,12 +389,13 @@ double TCustomDialPies::getOffset() const {return m_offset;}
 
 int TCustomDialPies::getSelectedPieIndex() const {return m_selectedPieIndex;}
 
-// Test to show direction of pie indices in relation to dial
+// TEST to show direction of pie indices in relation to dial
 void TCustomDialPies::printSelected(TLabel* label)
 {
 	label->Text = getSelectedPieIndex();
 }
 
+// testLabels contains index label by default
 void TCustomDialPies::showTestLabel()
 {
 	for (auto label : testLabels)
@@ -393,6 +406,149 @@ void TCustomDialPies::hideTestLabel()
 {
 	for (auto label : testLabels)
         label->Visible = False;
+}
+
+void TCustomDialPies::makeInvisible()
+{
+	// Make actual dial invisible
+	this->StyleLookup = "";
+    this->Visible = false;
+	this->Enabled = false;
+
+	// Make pies invisible
+	for (auto pie : m_pies)
+	{
+		pie->Visible = false;
+	}
+
+    // Make labels invisible
+	for (auto label : m_labels)
+	{
+		label->Visible = false;
+	}
+
+    this->hideTestLabel();
+}
+
+void TCustomDialPies::makeVisible()
+{
+	// Reset visibility to all elements
+	this->StyleLookup = "arcdialstyle";
+	this->Visible = true;
+	this->Enabled = true;
+
+	for (auto pie : m_pies)
+	{
+		pie->Visible = true;
+	}
+
+	for (auto label : m_labels)
+	{
+		label->Visible = true;
+	}
+
+	this->showTestLabel();
+}
+
+void TCustomDialPies::hideElements(bool dial, bool pies, bool labels)
+{
+	if (dial)
+	{
+		this->StyleLookup = "";
+		this->Visible = false;
+		this->Enabled = true;
+	}
+
+	if (pies)
+	{
+		for (auto pie : m_pies)
+		{
+			pie->Visible = false;
+		}
+	}
+
+	if (labels)
+	{
+		for (auto label : m_labels)
+		{
+			label->Visible = false;
+		}
+
+		this->hideTestLabel();
+	}
+
+}
+
+void TCustomDialPies::setElementVisibility(bool pie, bool label, int index, bool visible)
+{
+	if (pie)
+	{
+		if (visible)
+			// Hide individual pie
+			this->m_pies[index]->Visible = true;
+		else
+			this->m_pies[index]->Visible = false;
+	}
+
+	if (label)
+	{
+		if (visible)
+			this->m_labels[index]->Visible = true;
+		else
+			this->m_labels[index]->Visible = false;
+    }
+}
+
+void TCustomDialPies::showElements(bool dial, bool pies, bool labels)
+{
+	if (dial)
+	{
+		this->StyleLookup = "";
+		this->Visible = false;
+		this->Enabled = true;
+	}
+
+	if (pies)
+	{
+		for (auto pie : m_pies)
+		{
+			pie->Visible = true;
+		}
+	}
+
+	if (labels)
+	{
+		for (auto label : m_labels)
+		{
+			label->Visible = true;
+		}
+
+		this->showTestLabel();
+	}
+}
+
+void TCustomDialPies::setTransparency(bool dial, bool pies, bool labels, int value)
+{
+	if (dial)
+	{
+		this->Opacity = value;
+	}
+
+	if (pies)
+	{
+		for (auto pie : m_pies)
+		{
+			pie->Opacity = value;
+        }
+	}
+
+	if (labels)
+	{
+		for (auto label : m_labels)
+		{
+            label->Opacity = value;
+        }
+    }
 }
 //---------------------------------------------------------------------------
 #pragma package(smart_init)

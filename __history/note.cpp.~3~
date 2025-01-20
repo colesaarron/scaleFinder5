@@ -24,6 +24,12 @@ Note::Note(const std::string& noteName)
 	setFrequency();
 }
 
+//Note::Note(const std::string& noteName, int octave, int semitones)
+//	: m_noteName{noteName}, m_octaveId{octave}
+//	, m_semitonesFromC{semitones}
+//{}
+	
+
 
 Note::~Note()
 {}
@@ -35,6 +41,8 @@ void Note::setName(const std::string& noteName)
 
 void Note::setFrequency()
 {
+	// Frequency = f_0 x 2^(N/12) where N is the number of notes away from the start
+	// note, F_0
 	double n = m_semitonesFromC + (m_octaveId * 12);
 	double expoResult{n / 12};
 	double frequency{C_ZERO * pow(2, expoResult) * pow(m_octaveId, 2)};
@@ -94,12 +102,15 @@ void Note::setSharp()
 
 void Note::increaseOctave(int value)
 {
+	//m_frequency *= value;
 	m_octaveId += value;
+    //setFrequency();
 }
 
 void Note::decreaseOctave(int value)
 {
 	m_octaveId -= value;
+    //setFrequency();
 }
 
 void Note::increaseFrequency(int value)

@@ -3,8 +3,6 @@
 #ifndef CustomDialPiesH
 #define CustomDialPiesH
 
-//#include <vcl.h>
-//#include <Vcl.ExtCtrls.hpp>  // Include the header for TArcDial and TPie
 #include <System.Classes.hpp>
 #include <FMX.Controls.hpp>
 #include <FMX.Forms.hpp>
@@ -21,9 +19,6 @@
 #include <FMX.Edit.hpp>
 #include <vector>
 #include <cmath>
-//#include "ChordManager.h"
-
-//class TForm1;
 
 // Constants used for formatting
 constexpr double LOW_OPACITY = 0.2;
@@ -53,8 +48,6 @@ public:
 		TAlphaColor pieColour, TAlphaColor selectedColour, TAlphaColor textColour);
 	virtual __fastcall ~TCustomDialPies();
 
-//	void __fastcall createPies(int pieElements);
-	//void __fastcall positionPies();
 
 	// Public methods to manage pies
 	void createPolarPie(int scale, int angle);
@@ -63,8 +56,6 @@ public:
 	void setPiePosition(TPie* pie, int scale);
 	void expandElements(int pieIndex);
 	void collapseElements();
-
-//	ChordManager chordManager;
 
 	void setLabels(int index, String text);
 
@@ -88,7 +79,6 @@ public:
 	void setSelectedColour(TAlphaColor colour);
 	void setTextColour(TAlphaColor colour);
 
-//	int getSelected() const;
 	int getPieCount() const;
 	int getPieAngle() const;
 	double getOffset() const;
@@ -106,9 +96,6 @@ public:
 	void setElementVisibility(bool pie, bool label, int index, bool visible);
 	void showElements(bool dial, bool pies, bool labels);
 	void setTransparency(bool dial, bool pies, bool labels, int value);
-
-
-
 
 };
 
